@@ -1,0 +1,74 @@
+import java.util.*;
+import javax.swing.*;
+public class Nota
+{
+    private String Titulo,Cuerpo;
+    public static void main(String args[]){
+       Vector almacenamiento= new <Nota> Vector();
+       int a = 0;
+        do{
+           a= Integer.parseInt(JOptionPane.showInputDialog("Ingresa la opcion deseada\n0.Salir\n1.Crear nueva nota\n2.Buscar nota por Titulo"+
+            "\n3. Buscar nota por el cuerpo"));
+           switch(a){
+              case 0:
+                JOptionPane.showMessageDialog(null, "Hasta la proximaaaa");
+              break;
+               case 1:
+              String s = JOptionPane.showInputDialog("Ingresa el titulo de la nota");
+              String d = JOptionPane.showInputDialog("Ingresa el cuerpo de la nota");
+              Nota n = new Nota(s,d);
+              almacenamiento.add(n);
+              JOptionPane.showMessageDialog(null, "Nota Creada");
+              break;
+              case 2:
+              String g = JOptionPane.showInputDialog("Ingresa caracteres a buscar");
+              String resultado = "";
+              for (int i=0 ; i<almacenamiento.size(); i++){
+                  if(((Nota)almacenamiento.get(i)).getTitulo().toUpperCase().contains(g.toUpperCase()))
+                     resultado += ((Nota)almacenamiento.get(i)).getTitulo()+"\n\n";
+                }
+                JTextArea j = new JTextArea(20,40);
+                j.setEditable(false);
+                JScrollPane scroll= new JScrollPane(j);
+                j.append(resultado);
+                JOptionPane.showMessageDialog(null, scroll);
+              break;
+              case 3:
+              String r = JOptionPane.showInputDialog("Ingresa caracteres a buscar");
+              String resultad = "";
+              for (int i=0 ; i<almacenamiento.size(); i++){
+                  if(((Nota)almacenamiento.get(i)).getCuerpo().toUpperCase().contains(r.toUpperCase()))
+                     resultad += ((Nota)almacenamiento.get(i)).getCuerpo()+"\n\n";
+                }
+                JTextArea h = new JTextArea(20,40);
+                h.setEditable(false);
+                JScrollPane scrol= new JScrollPane(h);
+                h.append(resultad);
+                JOptionPane.showMessageDialog(null, scrol);
+              break;
+              default :
+               JOptionPane.showMessageDialog(null, "No hay ninguna opcion con ese numero");
+              break;
+            }
+        }while(a!=0);
+    }
+    private Nota(String  Titulo, String Cuerpo){
+       setTitulo(Titulo);
+       setCuerpo(Cuerpo);
+    }
+    public void setTitulo(String s){
+       this.Titulo = s;
+    }
+    public void setCuerpo(String s){
+       this.Cuerpo = s;
+    }
+    public String getTitulo(){
+       return Titulo;
+    }
+    public String getCuerpo(){
+       return Cuerpo;
+    }
+    public void mostrarNota(){
+       JOptionPane.showMessageDialog(null,getTitulo()+"\n"+getCuerpo());
+    }
+}
